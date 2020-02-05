@@ -9,27 +9,42 @@
   </head>
   <body>
     <script>
-      var peer = new Peer("webrtc-orchestra");
-      
+      let roomID = location.search.split("?")[1];
 
-      // var conn = peer.connect("another-peers-id");
+      const peer = new Peer();
 
-      // on open will be launch when you successfully connect to PeerServer
-      peer.on("open", function(id) {
-        console.log(id);
-        // here you have conn.id
-      
+      peer.on("open", function(id) {        
+        console.log("Opening conection to PeerJS", id);
+        if (roomID) {
+          peer.connect(roomID, function(e) {
+            console.log(e);
+          });
+        }        
       });
 
-      peer.on("connection", function(conn) {
-        console.log("Connected?")
-        console.log(conn)
-
-        // conn.on("data", function(data) {
-        //   // Will print 'hi!'
-        //   console.log(data);
-        // });
+      peer.on("connection", function(e) {
+        console.log("Connection made");
+        console.log(e);
       });
+
+      // peer.on("open", function(id) {
+      //   console.log(id);
+      //   // here you have conn.id
+
+      //   // see if webrtc peer exists
+      //   peer.connect('webrtc-orchestra', function(e) {
+      //     console.log(e);
+      //   });
+
+      //   // if webrtc peer does not exist disconnect
+      //   // and reconect as webrtc
+      //   peer.on('error', function(e) {
+      //     if (e.type === 'peer-unavaialble') {
+
+      //     }
+      //   });
+
+      // });
     </script>
   </body>
 </html>

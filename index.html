@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>WebRTC</title>
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+  </head>
+  <body>
+    <script>
+      var peer = new Peer("webrtc-orchestra");
+      
+
+      // var conn = peer.connect("another-peers-id");
+
+      // on open will be launch when you successfully connect to PeerServer
+      peer.on("open", function(id) {
+        console.log(id);
+        // here you have conn.id
+      
+      });
+
+      peer.on("connection", function(conn) {
+        console.log("Connected?")
+        console.log(conn)
+
+        // conn.on("data", function(data) {
+        //   // Will print 'hi!'
+        //   console.log(data);
+        // });
+      });
+    </script>
+  </body>
+</html>
